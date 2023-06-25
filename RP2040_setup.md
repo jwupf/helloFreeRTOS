@@ -23,9 +23,9 @@ git submodule update --init
 Setup path to the SDK
 
 ```` bash
-vi ~/.profile
+vi ~/.bashrc
 # -> export PICO_SDK_PATH="$HOME/opt/pico-sdk"
-source ~/.profile
+source ~/.bashrc
 ````  
 
 Get GCC
@@ -77,6 +77,22 @@ make -j 8
 sudo cp bin/bt /usr/local/bin/
 ````
   
+Get FreeRTOS
+
+```` bash
+cd ~/opt
+git clone -b smp https://github.com/FreeRTOS/FreeRTOS-Kernel --recurse-submodules
+````
+
+Setup path to the SDK
+
+```` bash
+vi ~/.bashrc
+# -> export FREERTOS_KERNEL_PATH="$HOME/opt/FreeRTOS-Kernel"
+source ~/.bashrc
+````  
+
+
 ## Create the project
 
 Create a skeleton in a new folder(for CMake with the build directory inside the repo ... ):
@@ -86,6 +102,7 @@ mkdir helloWorld
 cd helloWorld
 git init .
 git submodule add https://github.com/raspberrypi/pico-sdk.git
+git submodule add -b smp https://github.com/FreeRTOS/FreeRTOS-Kernel
 mkdir build
 touch CMakeLists.txt
 touch main.cpp
