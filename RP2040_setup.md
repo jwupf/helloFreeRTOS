@@ -10,6 +10,8 @@ sudo apt install build-essential pkg-config libusb-1.0-0-dev
 sudo apt  install --no-install-recommends cmake build-essential wget ca-certificates gdb-multiarch automake autoconf libtool libftdi-dev libusb-1.0-0-dev pkg-config clang-format libhidapi-dev
 ````
 
+<!-- Not needed in this REPO? - Check later ... Oh, this irony
+
 Get the SDK
 
 ```` bash
@@ -27,6 +29,23 @@ vi ~/.bashrc
 # -> export PICO_SDK_PATH="$HOME/opt/pico-sdk"
 source ~/.bashrc
 ````  
+
+Get FreeRTOS
+
+```` bash
+cd ~/opt
+git clone -b smp https://github.com/FreeRTOS/FreeRTOS-Kernel --recurse-submodules
+````
+
+Setup path to FreeRTOS
+
+```` bash
+vi ~/.bashrc
+# -> export FREERTOS_KERNEL_PATH="$HOME/opt/FreeRTOS-Kernel"
+source ~/.bashrc
+````  
+
+-->
 
 Get GCC
 
@@ -77,20 +96,7 @@ make -j 8
 sudo cp bin/bt /usr/local/bin/
 ````
   
-Get FreeRTOS
 
-```` bash
-cd ~/opt
-git clone -b smp https://github.com/FreeRTOS/FreeRTOS-Kernel --recurse-submodules
-````
-
-Setup path to the SDK
-
-```` bash
-vi ~/.bashrc
-# -> export FREERTOS_KERNEL_PATH="$HOME/opt/FreeRTOS-Kernel"
-source ~/.bashrc
-````  
 
 
 ## Create the project
